@@ -32,7 +32,7 @@ try:
     from base64 import b64decode
     from importlib import import_module
 
-    SYSVER: Final[str] = "njin3.21"
+    SYSVER: Final[str] = "njin3.23"
 
     class NjinError(Exception):
         ...
@@ -100,7 +100,6 @@ get help for njin:
                 path = ""
 
             elif path.startswith("-"):
-                print(path)
                 eval(f"Commands.{path[1:]}()")
 
                 return []
@@ -360,7 +359,7 @@ get help for njin:
                 return fn
 
     if __name__ == "__main__":
-        r: bool = main_func((sys.argv[1] if len(sys.argv) >= 2 else "") + ".n")
+        r: bool = main_func((sys.argv[1] if len(sys.argv) >= 2 else ""))
         if "-l" in sys.argv:
             print(f"{sys.argv[1] if len(sys.argv) >= 2 else ''}.n >> {r.lower()}")
 
