@@ -77,7 +77,7 @@ get help for njin:
         def cl() -> None:
             while True:
                 cmd: str = input("py njin.py >> ")
-                os.system("py njin.py " + cmd if cmd != "" else "-f" + "-l")
+                os.system("py njin.py " + cmd if cmd != "" else "-f" + " -l")
                 
         @staticmethod
         def v() -> None:
