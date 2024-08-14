@@ -10,7 +10,7 @@ import os as o;from base64 import b64decode as d;import sys as s
 
 -- welcome to your njin
 
-your system is running njin 2.0
+your system is running njin3
 ~ check https://javolinn.wixsite.com/garnet for updates
 
 
