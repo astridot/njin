@@ -32,7 +32,7 @@ try:
     from base64 import b64decode
     from importlib import import_module
 
-    SYSVER: Final[str] = "njin3.2"
+    SYSVER: Final[str] = "njin3.21"
 
     class NjinError(Exception):
         ...
@@ -96,7 +96,7 @@ get help for njin:
             ...
 
         def main(self, path: str, njin_loaded: bool = True, tbs: bool = False) -> list[str]:
-            if path = "-f":
+            if path == "-f":
                 path = ""
 
             elif path.startswith("-"):
