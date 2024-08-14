@@ -100,6 +100,7 @@ get help for njin:
                 path = ""
 
             elif path.startswith("-"):
+                print(path)
                 eval(f"Commands.{path[1:]}()")
 
                 return []
