@@ -32,7 +32,7 @@ try:
     from base64 import b64decode
     from importlib import import_module
 
-    SYSVER: Final[str] = "njin3.23"
+    SYSVER: Final[str] = "njin3.24"
 
     class NjinError(Exception):
         ...
@@ -77,7 +77,7 @@ get help for njin:
         def cl() -> None:
             while True:
                 cmd: str = input("py njin.py >> ")
-                os.system("py njin.py " + cmd + "-l")
+                os.system("py njin.py " + cmd if cmd != "" else "-f" + "-l")
                 
         @staticmethod
         def v() -> None:
