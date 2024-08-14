@@ -1,4 +1,3 @@
-import os as o;from base64 import b64decode as d;import sys as s
 """
 ███╗░░██╗░░░░░██╗██╗███╗░░██╗
 ████╗░██║░░░░░██║██║████╗░██║
@@ -10,12 +9,11 @@ import os as o;from base64 import b64decode as d;import sys as s
 
 -- welcome to your njin
 
-your system is running njin3.1
+~ run 'py njin.py -v' to check the version
+
 ~ check https://javolinn.wixsite.com/garnet for updates
 
 https://github.com/enjiprobably/njin/main/documentation.py for documentation
-
-wondering where the code is? njin automatically deploys a file when ran!
 
 commands (cmd and powershell compatible):
 ~ py njin.py ~ run ./.n
@@ -26,5 +24,347 @@ commands (cmd and powershell compatible):
 njin 2024 developed by enjiprobably from JΛVOLINN STUDIOS
 [-] github.com/enjiprobably/njin
 """
-V="njin3.1";with open(".nji","w") as f:f.write(d("dHJ5OgogICAgaW1wb3J0IG9zCiAgICBpbXBvcnQgc3lzCiAgICBmcm9tIHR5cGluZyBpbXBvcnQgQW55CiAgICBmcm9tIGJhc2U2NCBpbXBvcnQgYjY0ZGVjb2RlCiAgICBmcm9tIGltcG9ydGxpYiBpbXBvcnQgaW1wb3J0X21vZHVsZQogICAgZnJvbSBuamluIGltcG9ydCBWCgogICAgY2xhc3MgTmppbkVycm9yKEV4Y2VwdGlvbik6CiAgICAgICAgLi4uCgogICAgY2xhc3MgTGFuZzoKICAgICAgICBkZWYgX19pbml0X18oc2VsZiwgbmFtZTogc3RyLCBleHQ6IHN0ciwgc3RhdGljOiBzdHIgfCBOb25lKSAtPiBOb25lOgogICAgICAgICAgICBzZWxmLm5hbWU6IHN0ciA9IG5hbWUKICAgICAgICAgICAgc2VsZi5leHQ6IHN0ciA9IGV4dAogICAgICAgICAgICBzZWxmLnN0YXRpYzogc3RyIHwgTm9uZSA9IHN0YXRpYwoKICAgIGNsYXNzIEZpbGU6CiAgICAgICAgZGVmIF9faW5pdF9fKHNlbGYsIG5hbWU6IHN0ciwgcm9vdDogTGFuZywgcGF0aDogc3RyKSAtPiBOb25lOgogICAgICAgICAgICBzZWxmLm5hbWU6IHN0ciA9IG5hbWUKICAgICAgICAgICAgc2VsZi5yb290OiBMYW5nID0gcm9vdAogICAgICAgICAgICBzZWxmLnBhdGg6IHN0ciA9IHBhdGgKCiAgICBjbGFzcyBJbnRlcmZhY2U6CiAgICAgICAgZGVmIF9faW5pdF9fKHNlbGYsIG5hbWU6IHN0ciwgZXh0ZW5kczogbGlzdFtzdHJdKSAtPiBOb25lOgogICAgICAgICAgICBzZWxmLm5hbWU6IHN0ciA9IG5hbWUKICAgICAgICAgICAgc2VsZi5leHRlbmRzOiBsaXN0W3N0cl0gPSBleHRlbmRzCgogICAgY2xhc3MgQ29tbWFuZHM6CiAgICAgICAgQHN0YXRpY21ldGhvZAogICAgICAgIGRlZiBoZWxwKCkgLT4gTm9uZToKICAgICAgICAgICAgcHJpbnQoIiIiCmdldCBoZWxwIGZvciBuamluOgoKfiBjaGVjayBvdXQgdGhlIGRvY3VtZW50YXRpb24gYXQKICBbLV0gaHR0cHM6Ly9naXRodWIuY29tL2Vuamlwcm9iYWJseS9uamluL2Jsb2IvbWFpbi9kb2N1bWVudGF0aW9uLm1kCgp+IGdldCBoZWxwIG9uIEdhcm5ldC5jb20gYXQKICBbLV0gaHR0cHM6Ly9qYXZvbGlubi53aXhzaXRlLmNvbS9nYXJuZXQvZm9ydW0vcXVlc3Rpb25zLWFuc3dlcnMKCn4gc2VlIHJlcG9ydGVkIGlzc3VlcyBvciBwb3N0IG9uZSB5b3Vyc2VsZiBhdAogIFstXSBodHRwczovL2dpdGh1Yi5jb20vZW5qaXByb2JhYmx5L25qaW4vaXNzdWVzCgp+IHRyb3VibGVzaG9vdCB5b3VyIGNvZGUgYnkgYWRkaW5nIGAtZWAgaW4geW91ciBjb21tYW5kCiAgdG8gZGlzYWJsZSB1c2VyLWZyaWVuZGx5IGVycm9ycyBhbmQgc2hvdyBhZHZhbmNlZCBpbnRlcm5hbCBlcnJvcnMgaW5zdGVhZC4KIiIiKQoKICAgICAgICBAc3RhdGljbWV0aG9kCiAgICAgICAgZGVmIGNsKCkgLT4gTm9uZToKICAgICAgICAgICAgd2hpbGUgVHJ1ZToKICAgICAgICAgICAgICAgIGNtZDogc3RyID0gaW5wdXQoInB5IG5qaW4ucHkgPj4gIikKICAgICAgICAgICAgICAgIG9zLnN5c3RlbSgicHkgbmppbi5weSAiICsgY21kICsgIi1sIikKICAgICAgICAgICAgICAgIAogICAgICAgIEBzdGF0aWNtZXRob2QKICAgICAgICBkZWYgdigpIC0+IE5vbmU6CiAgICAgICAgICAgIHByaW50KCJ5b3VyIHN5c3RlbSBpcyBydW5uaW5nIiArIFYpCiAgICAgICAgICAgICAgICAKICAgIGRlZiBmZXRjaChwYXRoOiBzdHIpIC0+IHN0cjoKICAgICAgICB3aXRoIG9wZW4ocGF0aCwgZW5jb2Rpbmc9InV0ZjgiKSBhcyBmaWxlOgogICAgICAgICAgICBjOiBzdHIgPSBmaWxlLnJlYWQoKQoKICAgICAgICByZXR1cm4gYwogICAgCiAgICB0cm91Ymxlc2hvb3Rpbmc6IGJvb2wgPSBGYWxzZQoKICAgIGNsYXNzIE1haW46CiAgICAgICAgZGVmIF9faW5pdF9fKHNlbGYpIC0+IE5vbmU6CiAgICAgICAgICAgIC4uLgoKICAgICAgICBkZWYgbWFpbihzZWxmLCBwYXRoOiBzdHIsIG5qaW5fbG9hZGVkOiBib29sID0gVHJ1ZSwgdGJzOiBib29sID0gRmFsc2UpIC0+IGxpc3Rbc3RyXToKICAgICAgICAgICAgaWYgcGF0aCA9ICItZiI6CiAgICAgICAgICAgICAgICBwYXRoID0gIiIKCiAgICAgICAgICAgIGVsaWYgcGF0aC5zdGFydHN3aXRoKCItIik6CiAgICAgICAgICAgICAgICBldmFsKGYiQ29tbWFuZHMue3BhdGhbMTpdfSgpIikKCiAgICAgICAgICAgICAgICByZXR1cm4gW10KCiAgICAgICAgICAgIGlmIG5qaW5fbG9hZGVkOgogICAgICAgICAgICAgICAgcHJpbnQoIlwwMzNbMW1+bmppbiBsb2FkZWRcMDMzWzBtXG5cblxuIikKCiAgICAgICAgICAgIHNlbGYucGtnczogZGljdFtzdHIsIGRpY3Rbc3RyLCBMYW5nXV0gPSB7fQogICAgICAgICAgICBzZWxmLmxheWVyczogZGljdFtzdHJ8Tm9uZSwgQW55XSA9IHt9CiAgICAgICAgICAgIHNlbGYucHVibGljOiBkaWN0W3N0ciwgbGlzdFtzdHJdXSA9IHt9CiAgICAgICAgICAgIHNlbGYuZmlsZXM6IGRpY3Rbc3RyLCBGaWxlXSA9IHt9CgogICAgICAgICAgICBnbG9iYWwgdHJvdWJsZXNob290aW5nCiAgICAgICAgICAgIAogICAgICAgICAgICB0cm91Ymxlc2hvb3RpbmcgPSB0YnMKCiAgICAgICAgICAgIGM6IHN0ciA9IGZldGNoKHBhdGgpCiAgICAgICAgICAgIG5hbWU6IHN0ciA9ICIiCiAgICAgICAgICAgIGxuczogbGlzdFtzdHJdID0gYy5zcGxpdCgiXG4iKSArIFsicmV0dXJuIGZhbHNlIl0KCiAgICAgICAgICAgIHNlbGYuY29tbWVudDogYm9vbCA9IEZhbHNlCgogICAgICAgICAgICByZXR1cm4gbG5zCgogICAgICAgIGRlZiBsb29wKHNlbGYsIGxuOiBzdHIpIC0+IGJvb2x8Tm9uZToKICAgICAgICAgICAgaWYgc2VsZi5jb21tZW50OgogICAgICAgICAgICAgICAgaWYgbG4uZW5kc3dpdGgoIiovIik6CiAgICAgICAgICAgICAgICAgICAgc2VsZi5jb21tZW50ID0gRmFsc2UKCiAgICAgICAgICAgIGVsaWYgbG4uc3RhcnRzd2l0aCgiLy8iKToKICAgICAgICAgICAgICAgIC4uLgoKICAgICAgICAgICAgZWxpZiBsbi5zdGFydHN3aXRoKCIvKiIpOgogICAgICAgICAgICAgICAgc2VsZi5jb21tZW50ID0gVHJ1ZQoKICAgICAgICAgICAgZWxpZiBsbi5zdGFydHN3aXRoKCJhc3NlcnQgIik6CiAgICAgICAgICAgICAgICBpZiBmbiA6PSBzZWxmLnBhcnNlQXNzZXJ0KGxuKSBpcyBub3QgTm9uZToKICAgICAgICAgICAgICAgICAgICByZXR1cm4gZm4KCiAgICAgICAgICAgIGVsaWYgbG4uc3RhcnRzd2l0aCgicGFja2FnZSAiKToKICAgICAgICAgICAgICAgIHNlbGYucGFyc2VQYWNrYWdlKGxuKQoKICAgICAgICAgICAgZWxpZiBsbi5zdGFydHN3aXRoKCJyZXR1cm4gIik6CiAgICAgICAgICAgICAgICByZXR1cm4gc2VsZi5wYXJzZVJldHVybihsbikKCiAgICAgICAgICAgIGVsaWYgbG4uc3RhcnRzd2l0aCgicHVibGljICIpOgogICAgICAgICAgICAgICAgc2VsZi5wYXJzZVB1YmxpYyhsbikKCiAgICAgICAgICAgIGVsaWYgbG4uc3RhcnRzd2l0aCgicHJpdmF0ZSAiKToKICAgICAgICAgICAgICAgIHNlbGYucGFyc2VQcml2YXRlKGxuKQoKICAgICAgICAgICAgZWxpZiBsbi5zdGFydHN3aXRoKCJjbGFzcyAiKToKICAgICAgICAgICAgICAgIHNlbGYucGFyc2VDbGFzcyhsbikKCiAgICAgICAgICAgIGVsaWYgbG4uc3RhcnRzd2l0aCgiYWJzdHJhY3QgY2xhc3MgIik6CiAgICAgICAgICAgICAgICBzZWxmLnBhcnNlQWJzdHJhY3RDbGFzcyhsbikKICAgICAgICAKICAgICAgICAgICAgZWxpZiBsbi5zdGFydHN3aXRoKCJuZXcgIik6CiAgICAgICAgICAgICAgICBzZWxmLnBhcnNlTmV3KGxuKQoKICAgICAgICAgICAgZWxpZiBsbi5zdGFydHN3aXRoKCJ0cnkgIik6CiAgICAgICAgICAgICAgICBzZWxmLnBhcnNlVHJ5KGxuKQoKICAgICAgICAgICAgZWxpZiBsbi5zdGFydHN3aXRoKCJpbnRlcmZhY2UgIik6CiAgICAgICAgICAgICAgICBzZWxmLnBhcnNlSW50ZXJmYWNlKGxuKQoKICAgICAgICAgICAgZWxpZiBsbi5zdGFydHN3aXRoKCJpbXBvcnQgIik6CiAgICAgICAgICAgICAgICBzZWxmLnBhcnNlSW1wb3J0KGxuKQoKICAgICAgICAgICAgZWxpZiBsbi5zdGFydHN3aXRoKCJzdXBlciAiKToKICAgICAgICAgICAgICAgIHNlbGYucGFyc2VTdXBlcihsbikKCiAgICAgICAgICAgIGVsaWYgbG4uc3RhcnRzd2l0aCgiW1wiIikgYW5kIGxuLmVuZHN3aXRoKCJcIl0iKToKICAgICAgICAgICAgICAgIG9zLnN5c3RlbShsbi5zdHJpcCgiW1wiXSIpKQogICAgICAgICAgICAgICAgCiAgICAgICAgICAgIGVsaWYgbG4gaW4gKCJ9IiwgImJyZWFrIik6CiAgICAgICAgICAgICAgICBzZWxmLmxheWVycy5wb3BpdGVtKCkKICAgICAgICAKICAgICAgICBkZWYgcGFyc2VBc3NlcnQoc2VsZiwgbG46IHN0cikgLT4gYm9vbCB8IE5vbmU6CiAgICAgICAgICAgIHBhcnRzOiBsaXN0W3N0cl0gPSBsbi5zdHJpcCgpLnJlbW92ZXByZWZpeCgiYXNzZXJ0ICIpLnNwbGl0KCIgIikKCiAgICAgICAgICAgIGlkOiBzdHIgPSBwYXJ0c1swXQoKICAgICAgICAgICAgaWYgbm90IG1haW5fZnVuYyhpZCk6CiAgICAgICAgICAgICAgICByZXR1cm4gRmFsc2UKCiAgICAgICAgZGVmIHBhcnNlUGFja2FnZShzZWxmLCBsbjogc3RyKSAtPiBOb25lOgogICAgICAgICAgICBwYXJ0czogbGlzdFtzdHJdID0gbG4uc3RyaXAoKS5yZW1vdmVwcmVmaXgoInBhY2thZ2UgIikuc3BsaXQoIiAiKQoKICAgICAgICAgICAgc2VsZi5sYXllcnMudXBkYXRlKHtOb25lOiBwYXJ0c1swXX0pCiAgICAgICAgICAgIHNlbGYucHVibGljLnVwZGF0ZSh7cGFydHNbMF06IFtdfSkKCiAgICAgICAgZGVmIHBhcnNlUmV0dXJuKHNlbGYsIGxuOiBzdHIpIC0+IGJvb2wgfCBOb25lOgogICAgICAgICAgICBwYXJ0czogbGlzdFtzdHJdID0gbG4uc3RyaXAoKS5yZW1vdmVwcmVmaXgoInJldHVybiAiKS5zcGxpdCgiICIpCgogICAgICAgICAgICBtYXRjaCBwYXJ0c1swXToKICAgICAgICAgICAgICAgIGNhc2UgInRydWUiOgogICAgICAgICAgICAgICAgICAgIHJldHVybiBUcnVlCiAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgIGNhc2UgImZhbHNlIjoKICAgICAgICAgICAgICAgICAgICByZXR1cm4gRmFsc2UKICAgICAgICAgICAgICAgIAogICAgICAgIGRlZiBwYXJzZU1vZHVsZShzZWxmLCBsbjogc3RyLCBzdHJ1Y3Q6IHN0ciwgbmFtZTogc3RyKSAtPiBOb25lOgogICAgICAgICAgICBwYXJ0czogbGlzdFtzdHJdID0gbG4uc3RyaXAoKS5yZW1vdmVwcmVmaXgobmFtZSkuc3BsaXQoIiAiKQoKICAgICAgICAgICAgbW9kOiBzdHIgPSBsaXN0KHNlbGYubGF5ZXJzLnZhbHVlcygpKVstMV0KCiAgICAgICAgICAgIGlmIHBhcnRzWzBdIGluIFtpIGZvciBpIGluIGxpc3Qoc2VsZi5wa2dzW21vZF0ua2V5cygpKV06CiAgICAgICAgICAgICAgICBzZWxmLnB1YmxpY1tsaXN0KHNlbGYubGF5ZXJzLnZhbHVlcygpKVstMV1dLmFwcGVuZChzdHJ1Y3QuZm9ybWF0KAogICAgICAgICAgICAgICAgICAgIG5hbWU9cGFydHNbMF0sCiAgICAgICAgICAgICAgICAgICAgbW9kdWxlPW1vZAogICAgICAgICAgICAgICAgKSkKCiAgICAgICAgICAgIGVsc2U6CiAgICAgICAgICAgICAgICByYWlzZSBOYW1lRXJyb3IoZiJuamluOiBubyBpbXBsZW1lbnRhdGlvbiAne3BhcnRzWzBdfScgaW4gZXh0ZW5kYW50ICd7bGlzdChzZWxmLmxheWVycy52YWx1ZXMoKSlbLTFdfSciKQogICAgICAgICAgICAgICAgCiAgICAgICAgZGVmIHBhcnNlUHVibGljKHNlbGYsIGxuOiBzdHIpIC0+IE5vbmU6CiAgICAgICAgICAgIHNlbGYucGFyc2VNb2R1bGUobG4sICJ7bmFtZX0iLCAicHVibGljICIpCiAgICAgICAgICAgIAogICAgICAgIGRlZiBwYXJzZVByaXZhdGUoc2VsZiwgbG46IHN0cikgLT4gTm9uZToKICAgICAgICAgICAgc2VsZi5wYXJzZU1vZHVsZShsbiwgInttb2R1bGV9LntuYW1lfSIsICJwcml2YXRlICIpCiAgICAgICAgICAgIAogICAgICAgIGRlZiBwYXJzZUNsYXNzKHNlbGYsIGxuOiBzdHIpIC0+IE5vbmU6CiAgICAgICAgICAgIHBhcnRzOiBsaXN0W3N0cl0gPSBsbi5yZW1vdmVwcmVmaXgoImNsYXNzICIpLnNwbGl0KCIgIikKCiAgICAgICAgICAgIGlmICJleHRlbmRzIiBub3QgaW4gIiAiLmpvaW4ocGFydHMpOgogICAgICAgICAgICAgICAgc2VsZi5sYXllcnMudXBkYXRlKHtwYXJ0c1swXTogTm9uZX0pCgogICAgICAgICAgICBlbGlmIHBhcnRzWzFdICE9ICJleHRlbmRzIiBvciBwYXJ0c1szXSAhPSAiaW1wbGVtZW50cyI6CiAgICAgICAgICAgICAgICByYWlzZSBTeW50YXhFcnJvcigibmppbjogZXhwZWN0ZWQgZXh0ZW5kYW50IGFuZCBpbXBsZW1lbnRhdGlvbiIpCgogICAgICAgICAgICBlbGlmIHBhcnRzWzRdIG5vdCBpbiBzZWxmLnB1YmxpY1twYXJ0c1syXV06CiAgICAgICAgICAgICAgICByYWlzZSBUeXBlRXJyb3IoIm5qaW46IGludmFsaWQgaW1wbGVtZW50YXRpb24iKQogICAgICAgICAgICAKICAgICAgICAgICAgZWxzZToKICAgICAgICAgICAgICAgIHNlbGYubGF5ZXJzLnVwZGF0ZSh7cGFydHNbMF06IHNlbGYucGtnc1twYXJ0c1syXV1bcGFydHNbNF0uc3BsaXQoIi4iKVstMV1dfSkKICAgICAgICAKICAgICAgICBkZWYgcGFyc2VBYnN0cmFjdENsYXNzKHNlbGYsIGxuOiBzdHIpIC0+IE5vbmU6CiAgICAgICAgICAgIHBhcnRzOiBsaXN0W3N0cl0gPSBsbi5yZW1vdmVwcmVmaXgoImFic3RyYWN0IGNsYXNzICIpLnNwbGl0KCIgIikKCiAgICAgICAgICAgIGlkID0gewogICAgICAgICAgICAgICAgMDogImJ1aWxkIiwKICAgICAgICAgICAgICAgIDE6ICJkaXN0IgogICAgICAgICAgICB9W2ludChwYXJ0c1swXSldCgogICAgICAgICAgICBpZiAiZXh0ZW5kcyIgbm90IGluICIgIi5qb2luKHBhcnRzKToKICAgICAgICAgICAgICAgIHNlbGYubGF5ZXJzLnVwZGF0ZSh7cGFydHNbMF06IE5vbmV9KQoKICAgICAgICAgICAgZWxpZiBwYXJ0c1sxXSAhPSAiZXh0ZW5kcyIgb3IgcGFydHNbM10gIT0gImltcGxlbWVudHMiOgogICAgICAgICAgICAgICAgcmFpc2UgU3ludGF4RXJyb3IoIm5qaW46IGV4cGVjdGVkIGV4dGVuZGFudCBhbmQgaW1wbGVtZW50YXRpb24iKQoKICAgICAgICAgICAgZWxpZiBwYXJ0c1s0XSBub3QgaW4gc2VsZi5wdWJsaWNbcGFydHNbMl1dOgogICAgICAgICAgICAgICAgcmFpc2UgVHlwZUVycm9yKCJuamluOiBpbnZhbGlkIGltcGxlbWVudGF0aW9uIikKICAgICAgICAgICAgCiAgICAgICAgICAgIGVsc2U6CiAgICAgICAgICAgICAgICBzZWxmLmxheWVycy51cGRhdGUoe2lkOiBzZWxmLnBrZ3NbcGFydHNbMl1dW3BhcnRzWzRdLnNwbGl0KCIuIilbLTFdXX0pCgogICAgICAgIGRlZiBwYXJzZU5ldyhzZWxmLCBsbjogc3RyKSAtPiBOb25lOgogICAgICAgICAgICBwYXJ0czogbGlzdFtzdHJdID0gbG4ucmVtb3ZlcHJlZml4KCJuZXcgIikuc3BsaXQoIiAiKQoKICAgICAgICAgICAgbmFtZTogc3RyID0gcGFydHNbMF0KICAgICAgICAgICAgbzogTGFuZyB8IE5vbmUgPSBsaXN0KHNlbGYubGF5ZXJzLnZhbHVlcygpKVstMV0KCiAgICAgICAgICAgIGlmIG8gaXMgTm9uZToKICAgICAgICAgICAgICAgIHJhaXNlIFR5cGVFcnJvcigibmppbjogY2Fubm90IGNyZWF0ZSB2YXJpYWJsZXMgaW4gbm9uLWV4dGVuZGluZyBjbGFzcy9pbnRlcmZhY2UiKQoKICAgICAgICAgICAgZm46IHN0ciA9IGYie25hbWV9LntvLmV4dH0iCgogICAgICAgICAgICBwYXRoOiBzdHIgPSAiXFwiLmpvaW4oW2xheWVyIGZvciBsYXllciBpbiBzZWxmLmxheWVycyBpZiBsYXllciBpcyBub3QgTm9uZV0pCgogICAgICAgICAgICBpZiBub3QgcGF0aC5zdGFydHN3aXRoKCJuamluXFwiKToKICAgICAgICAgICAgICAgIHJhaXNlIE5hbWVFcnJvcigibmppbjogY2Fubm90IGNyZWF0ZSB2YXJpYWJsZXMgd2l0aG91dCBnbG9iYWwgbWFpbi1sZXZlbCBpbnRlcmZhY2UgJ25qaW4nIikKCiAgICAgICAgICAgIHBhdGggPSBwYXRoLnJlbW92ZXByZWZpeCgibmppblxcIikKCiAgICAgICAgICAgIHNlbGYuZmlsZXMudXBkYXRlKHtuYW1lOiBGaWxlKAogICAgICAgICAgICAgICAgbmFtZSwKICAgICAgICAgICAgICAgIG8sCiAgICAgICAgICAgICAgICBwYXRoCiAgICAgICAgICAgICl9KQoKICAgICAgICBkZWYgcGFyc2VUcnkoc2VsZiwgbG46IHN0cikgLT4gTm9uZToKICAgICAgICAgICAgcGFydHM6IGxpc3Rbc3RyXSA9IGxuLnJlbW92ZXByZWZpeCgidHJ5ICIpLnNwbGl0KCIgIikKCiAgICAgICAgICAgIGZpbGU6IEZpbGUgPSBzZWxmLmZpbGVzW3BhcnRzWzBdXQogICAgICAgICAgICByb290OiBMYW5nID0gZmlsZS5yb290CgogICAgICAgICAgICBmbjogc3RyID0gZiJ7ZmlsZS5uYW1lfS57cm9vdC5leHR9IgoKICAgICAgICAgICAgaWYgbm90IHBhcnRzWzFdLnN0YXJ0c3dpdGgoIlsiKSBvciBub3QgcGFydHNbMV0uZW5kc3dpdGgoIl0iKToKICAgICAgICAgICAgICAgIHJhaXNlIFN5bnRheEVycm9yKGYibmppbjogYXJndW1lbnQgMiBzaG91bGQgYmUgYSBzcS4gYnJhY2tldCBzdHJ1Y3R1cmUiKQoKICAgICAgICAgICAgZWxzZToKICAgICAgICAgICAgICAgIGNtZDogc3RyID0gcGFydHNbMV0uc3RyaXAoIltcIl0iKQogICAgICAgICAgICAgICAgY21kID0gY21kLmZvcm1hdChmbiwgZm49ZmlsZS5uYW1lKQoKICAgICAgICAgICAgaWYgY21kID09ICJzdGF0aWMiIGFuZCByb290LnN0YXRpYyBpcyBub3QgTm9uZToKICAgICAgICAgICAgICAgIGNtZCA9IHJvb3Quc3RhdGljCiAgICAgICAgICAgIGVsc2U6CiAgICAgICAgICAgICAgICB0cnk6CiAgICAgICAgICAgICAgICAgICAgY21kID0gZXZhbChjbWQpCgogICAgICAgICAgICAgICAgICAgIGlmIG5vdCBpc2luc3RhbmNlKGNtZCwgc3RyKSBvciAxID09IDA6CiAgICAgICAgICAgICAgICAgICAgICAgIHJhaXNlIFR5cGVFcnJvcigidHlwZSBpcyBub3QgJ3N0ciciKQogICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgZXhjZXB0IEV4Y2VwdGlvbiBhcyBlcnI6CiAgICAgICAgICAgICAgICAgICAgcmFpc2UgU3ludGF4RXJyb3IoZiJuamluOiBweXRob24gJ2V2YWwnIGVycm9yIGluICdzdHInOiAne3JlcHIoZXJyKX0nIikKICAgICAgICAgICAgICAgIAogICAgICAgICAgICBhZnRlcjogc3RyID0gIiAiLmpvaW4ocGFydHNbMjpdKS5zdHJpcCgpCgogICAgICAgICAgICBpZiBhZnRlciAhPSAiIjoKICAgICAgICAgICAgICAgIGFyZ3M6IHR1cGxlW3N0ciwgLi4uXSA9IGV2YWwoKGFmdGVyLnN0cmlwKCIpIikgKyAiLCkiKSBpZiBhZnRlciAhPSAiKCkiIGVsc2UgInR1cGxlKCkiKQoKICAgICAgICAgICAgICAgIGlmIG5vdCBpc2luc3RhbmNlKGFyZ3MsIHR1cGxlKSBvciAxID09IDA6CiAgICAgICAgICAgICAgICAgICAgcmFpc2UgU3ludGF4RXJyb3IoIm5qaW46IGFyZ3MgaXMgbm90ICd0dXBsZSciKQogICAgICAgICAgICBlbHNlOgogICAgICAgICAgICAgICAgYXJnczogdHVwbGVbc3RyLCAuLi5dID0gdHVwbGUoKQoKICAgICAgICAgICAgb3Muc3lzdGVtKGYie2NtZH0ge2ZpbGUucGF0aH1cXHtmbn0geycgJy5qb2luKGFyZ3MpfSIpCgogICAgICAgIGRlZiBwYXJzZUludGVyZmFjZShzZWxmLCBsbjogc3RyKSAtPiBOb25lOgogICAgICAgICAgICBwYXJ0czogbGlzdFtzdHJdID0gbG4ucmVtb3ZlcHJlZml4KCJpbnRlcmZhY2UgIikuc3BsaXQoIiAiKQoKICAgICAgICAgICAgaWYgImV4dGVuZHMiIG5vdCBpbiAiICIuam9pbihwYXJ0cyk6CiAgICAgICAgICAgICAgICBzZWxmLmxheWVycy51cGRhdGUoe3BhcnRzWzBdOiBOb25lfSkKCiAgICAgICAgICAgIGVsaWYgcGFydHNbMV0gIT0gImV4dGVuZHMiIG9yIHBhcnRzWzNdICE9ICJpbXBsZW1lbnRzIjoKICAgICAgICAgICAgICAgIHJhaXNlIFN5bnRheEVycm9yKCJuamluOiBleHBlY3RlZCBleHRlbmRhbnQgYW5kIGltcGxlbWVudGF0aW9uIikKCiAgICAgICAgICAgIGVsaWYgcGFydHNbNF0gbm90IGluIHNlbGYucHVibGljW3BhcnRzWzJdXToKICAgICAgICAgICAgICAgIHJhaXNlIFR5cGVFcnJvcigibmppbjogaW52YWxpZCBpbXBsZW1lbnRhdGlvbiIpCiAgICAgICAgICAgIAogICAgICAgICAgICBlbHNlOgogICAgICAgICAgICAgICAgc2VsZi5sYXllcnMudXBkYXRlKHtOb25lOiBzZWxmLnBrZ3NbcGFydHNbMl1dW3BhcnRzWzRdLnNwbGl0KCIuIilbLTFdXX0pCgogICAgICAgIGRlZiBwYXJzZUltcG9ydChzZWxmLCBsbjogc3RyKSAtPiBOb25lOgogICAgICAgICAgICBwYXRoOiBzdHIgPSBsbi5yZW1vdmVwcmVmaXgoImltcG9ydCAiKQoKICAgICAgICAgICAgY186IGRpY3Rbc3RyLCBkaWN0W3N0ciwgTGFuZ11dIHwgTm9uZSA9IGV2YWwoYjY0ZGVjb2RlKGZldGNoKHBhdGgpLnJlcGxhY2UoIlxuIiwgIiIpKSwgTm9uZSwgeyJMYW5nIjogTGFuZ30pCgogICAgICAgICAgICBpZiBpc2luc3RhbmNlKGNfLCBkaWN0KToKICAgICAgICAgICAgICAgIHNlbGYucGtncyB8PSBjXwoKICAgICAgICAgICAgZWxzZToKICAgICAgICAgICAgICAgIHJhaXNlIFR5cGVFcnJvcigibmppbjogdGhlcmUgd2FzIGFuIGVycm9yIHdoaWxlIGxvYWRpbmcgYW4gaW1wb3J0IikKICAgICAgICAgICAgCiAgICAgICAgZGVmIHBhcnNlU3VwZXIoc2VsZiwgbG46IHN0cikgLT4gTm9uZToKICAgICAgICAgICAgcGFydHM6IGxpc3Rbc3RyXSA9IGxuLnJlbW92ZXByZWZpeCgic3VwZXIgIikuc3BsaXQoIiAiKQoKICAgICAgICAgICAgc2VsZi5wYXJzZU5ldyhmIm5ldyB7cGFydHNbMF19IikKICAgICAgICAgICAgc2VsZi5wYXJzZVRyeShmInRyeSB7JyAnLmpvaW4ocGFydHMpfSIpCgogICAgZGVmIG1haW5fZnVuYyhwYXRoOiBzdHIpIC0+IGJvb2wgfCBOb25lOgogICAgICAgIG1haW46IE1haW4gPSBNYWluKCkKICAgICAgICBmb3IgbG4gaW4gbWFpbi5tYWluKHBhdGgsICItYyIgaW4gc3lzLmFyZ3YsICItZSIgaW4gc3lzLmFyZ3YpOgogICAgICAgICAgICBpZiAoZm4gOj0gbWFpbi5sb29wKGxuLnN0cmlwKCkpKSBpcyBub3QgTm9uZToKICAgICAgICAgICAgICAgIHJldHVybiBmbgoKICAgIGlmIF9fbmFtZV9fID09ICJfX21haW5fXyI6CiAgICAgICAgcjogYm9vbCA9IG1haW5fZnVuYygoc3lzLmFyZ3ZbMV0gaWYgbGVuKHN5cy5hcmd2KSA+PSAyIGVsc2UgIiIpICsgIi5uIikKICAgICAgICBpZiAiLWwiIGluIHN5cy5hcmd2OgogICAgICAgICAgICBwcmludChmIntzeXMuYXJndlsxXSBpZiBsZW4oc3lzLmFyZ3YpID49IDIgZWxzZSAnJ30ubiA+PiB7ci5sb3dlcigpfSIpCgpleGNlcHQgRXhjZXB0aW9uIGFzIGV4YzoKICAgIGlmIG5vdCB0cm91Ymxlc2hvb3Rpbmc6CiAgICAgICAgcmFpc2UgTmppbkVycm9yKCJhIGZhdGFsIGVycm9yIG9jY3VyZWQgd2hpbGUgcGFyc2luZyBuamluIGFuZCB0aGUgc3lzdGVtIGNvdWxkbid0IHJlY292ZXIgOihcblxucGxlYXNlIHJldmlldyB5b3VyIGNvZGUgYW5kIHRyeSBhZ2FpbiIpCiAgICBlbHNlOgogICAgICAgIHJhaXNlIGV4Yw==").decode())
-o.system(f"py .nji {" ".join(s.argv[1:])}");o.remove(".nji")
+
+try:
+    import os
+    import sys
+    from typing import Any, Final
+    from base64 import b64decode
+    from importlib import import_module
+
+    SYSVER: Final[str] = "njin3.2"
+
+    class NjinError(Exception):
+        ...
+
+    class Lang:
+        def __init__(self, name: str, ext: str, static: str | None) -> None:
+            self.name: str = name
+            self.ext: str = ext
+            self.static: str | None = static
+
+    class File:
+        def __init__(self, name: str, root: Lang, path: str) -> None:
+            self.name: str = name
+            self.root: Lang = root
+            self.path: str = path
+
+    class Interface:
+        def __init__(self, name: str, extends: list[str]) -> None:
+            self.name: str = name
+            self.extends: list[str] = extends
+
+    class Commands:
+        @staticmethod
+        def help() -> None:
+            print("""
+get help for njin:
+
+~ check out the documentation at
+  [-] https://github.com/enjiprobably/njin/blob/main/documentation.md
+
+~ get help on Garnet.com at
+  [-] https://javolinn.wixsite.com/garnet/forum/questions-answers
+
+~ see reported issues or post one yourself at
+  [-] https://github.com/enjiprobably/njin/issues
+
+~ troubleshoot your code by adding `-e` in your command
+  to disable user-friendly errors and show advanced internal errors instead.
+""")
+
+        @staticmethod
+        def cl() -> None:
+            while True:
+                cmd: str = input("py njin.py >> ")
+                os.system("py njin.py " + cmd + "-l")
+                
+        @staticmethod
+        def v() -> None:
+            print("your system is running" + SYSVER)
+                
+    def fetch(path: str) -> str:
+        with open(path, encoding="utf8") as file:
+            c: str = file.read()
+
+        return c
+    
+    troubleshooting: bool = False
+
+    class Main:
+        def __init__(self) -> None:
+            ...
+
+        def main(self, path: str, njin_loaded: bool = True, tbs: bool = False) -> list[str]:
+            if path = "-f":
+                path = ""
+
+            elif path.startswith("-"):
+                eval(f"Commands.{path[1:]}()")
+
+                return []
+
+            if njin_loaded:
+                print("\033[1m~njin loaded\033[0m\n\n\n")
+
+            self.pkgs: dict[str, dict[str, Lang]] = {}
+            self.layers: dict[str|None, Any] = {}
+            self.public: dict[str, list[str]] = {}
+            self.files: dict[str, File] = {}
+
+            global troubleshooting
+            
+            troubleshooting = tbs
+
+            c: str = fetch(path)
+            name: str = ""
+            lns: list[str] = c.split("\n") + ["return false"]
+
+            self.comment: bool = False
+
+            return lns
+
+        def loop(self, ln: str) -> bool|None:
+            if self.comment:
+                if ln.endswith("*/"):
+                    self.comment = False
+
+            elif ln.startswith("//"):
+                ...
+
+            elif ln.startswith("/*"):
+                self.comment = True
+
+            elif ln.startswith("assert "):
+                if fn := self.parseAssert(ln) is not None:
+                    return fn
+
+            elif ln.startswith("package "):
+                self.parsePackage(ln)
+
+            elif ln.startswith("return "):
+                return self.parseReturn(ln)
+
+            elif ln.startswith("public "):
+                self.parsePublic(ln)
+
+            elif ln.startswith("private "):
+                self.parsePrivate(ln)
+
+            elif ln.startswith("class "):
+                self.parseClass(ln)
+
+            elif ln.startswith("abstract class "):
+                self.parseAbstractClass(ln)
+        
+            elif ln.startswith("new "):
+                self.parseNew(ln)
+
+            elif ln.startswith("try "):
+                self.parseTry(ln)
+
+            elif ln.startswith("interface "):
+                self.parseInterface(ln)
+
+            elif ln.startswith("import "):
+                self.parseImport(ln)
+
+            elif ln.startswith("super "):
+                self.parseSuper(ln)
+
+            elif ln.startswith("[\"") and ln.endswith("\"]"):
+                os.system(ln.strip("[\"]"))
+                
+            elif ln in ("}", "break"):
+                self.layers.popitem()
+        
+        def parseAssert(self, ln: str) -> bool | None:
+            parts: list[str] = ln.strip().removeprefix("assert ").split(" ")
+
+            id: str = parts[0]
+
+            if not main_func(id):
+                return False
+
+        def parsePackage(self, ln: str) -> None:
+            parts: list[str] = ln.strip().removeprefix("package ").split(" ")
+
+            self.layers.update({None: parts[0]})
+            self.public.update({parts[0]: []})
+
+        def parseReturn(self, ln: str) -> bool | None:
+            parts: list[str] = ln.strip().removeprefix("return ").split(" ")
+
+            match parts[0]:
+                case "true":
+                    return True
+                
+                case "false":
+                    return False
+                
+        def parseModule(self, ln: str, struct: str, name: str) -> None:
+            parts: list[str] = ln.strip().removeprefix(name).split(" ")
+
+            mod: str = list(self.layers.values())[-1]
+
+            if parts[0] in [i for i in list(self.pkgs[mod].keys())]:
+                self.public[list(self.layers.values())[-1]].append(struct.format(
+                    name=parts[0],
+                    module=mod
+                ))
+
+            else:
+                raise NameError(f"njin: no implementation '{parts[0]}' in extendant '{list(self.layers.values())[-1]}'")
+                
+        def parsePublic(self, ln: str) -> None:
+            self.parseModule(ln, "{name}", "public ")
+            
+        def parsePrivate(self, ln: str) -> None:
+            self.parseModule(ln, "{module}.{name}", "private ")
+            
+        def parseClass(self, ln: str) -> None:
+            parts: list[str] = ln.removeprefix("class ").split(" ")
+
+            if "extends" not in " ".join(parts):
+                self.layers.update({parts[0]: None})
+
+            elif parts[1] != "extends" or parts[3] != "implements":
+                raise SyntaxError("njin: expected extendant and implementation")
+
+            elif parts[4] not in self.public[parts[2]]:
+                raise TypeError("njin: invalid implementation")
+            
+            else:
+                self.layers.update({parts[0]: self.pkgs[parts[2]][parts[4].split(".")[-1]]})
+        
+        def parseAbstractClass(self, ln: str) -> None:
+            parts: list[str] = ln.removeprefix("abstract class ").split(" ")
+
+            id = {
+                0: "build",
+                1: "dist"
+            }[int(parts[0])]
+
+            if "extends" not in " ".join(parts):
+                self.layers.update({parts[0]: None})
+
+            elif parts[1] != "extends" or parts[3] != "implements":
+                raise SyntaxError("njin: expected extendant and implementation")
+
+            elif parts[4] not in self.public[parts[2]]:
+                raise TypeError("njin: invalid implementation")
+            
+            else:
+                self.layers.update({id: self.pkgs[parts[2]][parts[4].split(".")[-1]]})
+
+        def parseNew(self, ln: str) -> None:
+            parts: list[str] = ln.removeprefix("new ").split(" ")
+
+            name: str = parts[0]
+            o: Lang | None = list(self.layers.values())[-1]
+
+            if o is None:
+                raise TypeError("njin: cannot create variables in non-extending class/interface")
+
+            fn: str = f"{name}.{o.ext}"
+
+            path: str = "\\".join([layer for layer in self.layers if layer is not None])
+
+            if not path.startswith("njin\\"):
+                raise NameError("njin: cannot create variables without global main-level interface 'njin'")
+
+            path = path.removeprefix("njin\\")
+
+            self.files.update({name: File(
+                name,
+                o,
+                path
+            )})
+
+        def parseTry(self, ln: str) -> None:
+            parts: list[str] = ln.removeprefix("try ").split(" ")
+
+            file: File = self.files[parts[0]]
+            root: Lang = file.root
+
+            fn: str = f"{file.name}.{root.ext}"
+
+            if not parts[1].startswith("[") or not parts[1].endswith("]"):
+                raise SyntaxError(f"njin: argument 2 should be a sq. bracket structure")
+
+            else:
+                cmd: str = parts[1].strip("[\"]")
+                cmd = cmd.format(fn, fn=file.name)
+
+            if cmd == "static" and root.static is not None:
+                cmd = root.static
+            else:
+                try:
+                    cmd = eval(cmd)
+
+                    if not isinstance(cmd, str) or 1 == 0:
+                        raise TypeError("type is not 'str'")
+                    
+                except Exception as err:
+                    raise SyntaxError(f"njin: python 'eval' error in 'str': '{repr(err)}'")
+                
+            after: str = " ".join(parts[2:]).strip()
+
+            if after != "":
+                args: tuple[str, ...] = eval((after.strip(")") + ",)") if after != "()" else "tuple()")
+
+                if not isinstance(args, tuple) or 1 == 0:
+                    raise SyntaxError("njin: args is not 'tuple'")
+            else:
+                args: tuple[str, ...] = tuple()
+
+            os.system(f"{cmd} {file.path}\\{fn} {' '.join(args)}")
+
+        def parseInterface(self, ln: str) -> None:
+            parts: list[str] = ln.removeprefix("interface ").split(" ")
+
+            if "extends" not in " ".join(parts):
+                self.layers.update({parts[0]: None})
+
+            elif parts[1] != "extends" or parts[3] != "implements":
+                raise SyntaxError("njin: expected extendant and implementation")
+
+            elif parts[4] not in self.public[parts[2]]:
+                raise TypeError("njin: invalid implementation")
+            
+            else:
+                self.layers.update({None: self.pkgs[parts[2]][parts[4].split(".")[-1]]})
+
+        def parseImport(self, ln: str) -> None:
+            path: str = ln.removeprefix("import ")
+
+            c_: dict[str, dict[str, Lang]] | None = eval(b64decode(fetch(path).replace("\n", "")), None, {"Lang": Lang})
+
+            if isinstance(c_, dict):
+                self.pkgs |= c_
+
+            else:
+                raise TypeError("njin: there was an error while loading an import")
+            
+        def parseSuper(self, ln: str) -> None:
+            parts: list[str] = ln.removeprefix("super ").split(" ")
+
+            self.parseNew(f"new {parts[0]}")
+            self.parseTry(f"try {' '.join(parts)}")
+
+    def main_func(path: str) -> bool | None:
+        main: Main = Main()
+        for ln in main.main(path, "-c" in sys.argv, "-e" in sys.argv):
+            if (fn := main.loop(ln.strip())) is not None:
+                return fn
+
+    if __name__ == "__main__":
+        r: bool = main_func((sys.argv[1] if len(sys.argv) >= 2 else "") + ".n")
+        if "-l" in sys.argv:
+            print(f"{sys.argv[1] if len(sys.argv) >= 2 else ''}.n >> {r.lower()}")
+
+except Exception as exc:
+    if not troubleshooting:
+        raise NjinError("a fatal error occured while parsing njin and the system couldn't recover :(\n\nplease review your code and try again")
+    else:
+        raise exc
