@@ -1,10 +1,24 @@
 ```
-███╗░░██╗░░░░░██╗██╗███╗░░██╗
-████╗░██║░░░░░██║██║████╗░██║
-██╔██╗██║░░░░░██║██║██╔██╗██║
-██║╚████║██╗░░██║██║██║╚████║
-██║░╚███║╚█████╔╝██║██║░╚███║
-╚═╝░░╚══╝░╚════╝░╚═╝╚═╝░░╚══╝
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  @@@@@@@@@@@@@@@@@@          @@@@@@@             
+     @@@@@@@@@@@@@@@           @@                 
+       @@@@@@@@@@@@@                              
+        @@@@@@@@@@@@                              
+        @@@@@@@@@@@@              @@@@@@@@@       
+        @@@@@@@@@@@@            @@@@@@@@@@@@      
+        @@@@@@@@@@@@            @@@@@@@@@@@@      
+        @@@@@@@@@@@@            @@@@@@@@@@@@      
+        @@@@@@@@@@@@            @@@@@@@@@@@@      
+        @@@@@@@@@@@@            @@@@@@@@@@@@      
+        @@@@@@@@@@@@            @@@@@@@@@@@@      
+        @@@@@@@@@@@@            @@@@@@@@@@@@       
 ```
 
 **njin** is a micro language designed to organize the flow of files in your project.
@@ -22,7 +36,7 @@ package python {}
 ```
 This initializes the `python` package from the `buckshot` module because `j-njin` has no package named `python`. If two imports are imported and they both have a package with the same name, an overlap error is raised.
 
-#### `public <NAME>` - Load an implementation from a package
+#### `public <NAME>` - Load an implementation from a package. Accessed as `<implementation>`
 
 **Example:**
 ```njin
@@ -37,10 +51,16 @@ This initializes the `Python` implementation from the `python` extendant. Implem
 - **extension**: the file extension for the file (e.g., 'py' for Python files, 'c' for C files)
 - **static**: how the file type is usually run in cmd (e.g., 'py' for Python files, 'gcc' for C files, 'start' for HTML files)
 
-#### `private <NAME>` - Similar to public, but the implementation can be accessed as `<extendant>.<implementation>` rather than just `<implementation>`
+#### `protected <NAME>` - Similar to public, but the implementation can be accessed as `<extendant>.<implementation>` rather than just `<implementation>`
 
-- Referring to public implementation: `Python` (Python equivalent: `from python import Python`)
-- Referring to private implementation: `python.Python` (Python equivalent: `import python`)
+- Referring to public implementation: `Python`
+- Referring to protected implementation: `python.Python`
+
+#### `private <NAME>` - Create a representative implementation for the extendant. Accessed as `<extendant>`. ONLY ONE PER PACKAGE!
+
+- Referring to public implementation: `Python`
+- Referring to protected implementation: `python.Python`
+- Referring to private implementation: `python`
 
 #### `class <NAME> extends <EXTENDANT> implements <IMPLEMENTATION> {}` - Create a directory with files of a certain type
 
@@ -114,17 +134,17 @@ package python {
 }
 
 package javascript {
-    public JavaScript
+    private JavaScript
 }
 
 package c {
-    private GCC // gcc is the compiler for C
+    protected GCC // gcc is the compiler for C
 }
 
 class MyProject extends c implements c.GCC {
     new main // this variable points to ./MyProject/main.c
 
-    abstract class 0 extends javascript implements JavaScript {
+    abstract class 0 extends javascript implements javascript {
         new start // this variable points to ./MyProject/build/start.js
     }
 
@@ -154,12 +174,12 @@ package python {
 }
 
 package javascript {
-    public JavaScript // javascript.JavaScript has no static,
-    private NodeJS    // but javascript.NodeJS does have one
+    private JavaScript // javascript.JavaScript has no static,
+    protected NodeJS    // but javascript.NodeJS does have one
 }
 
 package htmlcss {
-    private HTML
+    protected HTML
 }
 
 class MyProject extends htmlcss implements htmlcss.HTML {
@@ -301,7 +321,7 @@ package chromeserver { // from j-njin
 
 package c { // from buckshot
     private C
-    private GCC
+    protected GCC
 }
 
 interface njin {
@@ -313,7 +333,7 @@ interface njin {
         abstract class 1 extends javascript implements NodeJS {
             super script [static]
 
-            interface CompilingC extends c implements c.GCC {
+            interface CompilingC extends c implements c {
                 super main [static]
             }
 
