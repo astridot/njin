@@ -32,7 +32,7 @@ try:
     from base64 import b64decode
     from importlib import import_module
 
-    SYSVER: Final[str] = "njin3.25"
+    SYSVER: Final[str] = "njin3.3"
 
     class NjinError(Exception):
         ...
@@ -116,7 +116,7 @@ get help for njin:
             
             troubleshooting = tbs
 
-            c: str = fetch(path)
+            c: str = fetch(path).replace("\\\n", "")
             name: str = ""
             lns: list[str] = c.split("\n") + ["return false"]
 
