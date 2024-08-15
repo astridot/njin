@@ -81,7 +81,7 @@ get help for njin:
                 
         @staticmethod
         def v() -> None:
-            print("your system is running" + SYSVER)
+            print("your system is running " + SYSVER)
                 
     def fetch(path: str) -> str:
         with open(path, encoding="utf8") as file:
