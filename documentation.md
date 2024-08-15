@@ -134,17 +134,17 @@ package python {
 }
 
 package javascript {
-    public JavaScript
+    private JavaScript
 }
 
 package c {
-    private GCC // gcc is the compiler for C
+    protected GCC // gcc is the compiler for C
 }
 
 class MyProject extends c implements c.GCC {
     new main // this variable points to ./MyProject/main.c
 
-    abstract class 0 extends javascript implements JavaScript {
+    abstract class 0 extends javascript implements javascript {
         new start // this variable points to ./MyProject/build/start.js
     }
 
@@ -174,12 +174,12 @@ package python {
 }
 
 package javascript {
-    public JavaScript // javascript.JavaScript has no static,
-    private NodeJS    // but javascript.NodeJS does have one
+    private JavaScript // javascript.JavaScript has no static,
+    protected NodeJS    // but javascript.NodeJS does have one
 }
 
 package htmlcss {
-    private HTML
+    protected HTML
 }
 
 class MyProject extends htmlcss implements htmlcss.HTML {
@@ -321,7 +321,7 @@ package chromeserver { // from j-njin
 
 package c { // from buckshot
     private C
-    private GCC
+    protected GCC
 }
 
 interface njin {
@@ -333,7 +333,7 @@ interface njin {
         abstract class 1 extends javascript implements NodeJS {
             super script [static]
 
-            interface CompilingC extends c implements c.GCC {
+            interface CompilingC extends c implements c {
                 super main [static]
             }
 
