@@ -50,7 +50,7 @@ try:
     from importlib import import_module
     from time import perf_counter
 
-    SYSVER: Final[str] = "njin5"
+    SYSVER: Final[str] = "njin5 beta"
 
     class NjinError(Exception):
         ...
