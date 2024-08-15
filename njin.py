@@ -479,7 +479,6 @@ to upgrade your njin, follow any of these steps:
                     print(fetch("_throwaway"))
                 exit()
             finally:
-                print("hi")
                 os.remove("_throwaway")
         start: float = perf_counter()
         r: bool = main_func((sys.argv[1] if len(sys.argv) >= 2 else ".n"), start)
