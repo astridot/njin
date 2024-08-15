@@ -90,6 +90,8 @@ get help for njin:
         def cl(_) -> None:
             while True:
                 cmd: str = input("py njin.py >> ")
+                if cmd == "exit":
+                    exit()
                 os.system(f"py njin.py {cmd if cmd != "" else "-f"} -l")
                 
         @staticmethod
@@ -98,7 +100,7 @@ get help for njin:
 
         @staticmethod
         def ping(start: float) -> None:
-            print(f"Pong! {(perf_counter() - start):.6f}")
+            print(f"Pong! {((perf_counter() - start) * 1000):.6f}ms ({(perf_counter() - start):.6f}s)")
 
         @staticmethod
         def upgrade(_) -> None:
@@ -115,7 +117,7 @@ to upgrade your njin, follow any of these steps:
 ~ check for updates at
   [-] https://javolinn.wixsite.com/garnet/forum/production
 
-~ if you're an njineer, you can request the new release on
+~ if you're an njineer, you can request a new release on
   the JΛVOLINN*njin Discord server.
 
 
@@ -275,10 +277,10 @@ to upgrade your njin, follow any of these steps:
             self.parseModule(ln, "{name}", "public ")
             
         def parsePrivate(self, ln: str) -> None:
-            self.parseModule(ln, "{module}", "protected ")
+            self.parseModule(ln, "{module}", "private ")
 
         def parseProtected(self, ln: str) -> None:
-            self.parseModule(ln, "{module}.{name}", "private ")
+            self.parseModule(ln, "{module}.{name}", "protected ")
             
         def parseClass(self, ln: str) -> None:
             parts: list[str] = ln.removeprefix("class ").split(" ")
@@ -293,7 +295,7 @@ to upgrade your njin, follow any of these steps:
                 raise TypeError("njin: invalid implementation")
             
             else:
-                self.layers.update({parts[0]: self.pkgs[parts[2]][parts[4].split(".")[-1]]})
+                self.layers.update({parts[0]: self.pkgs[parts[2]][parts[4].split(".")[-1][0].upper() + parts[4].split(".")[-1][1:]]})
         
         def parseAbstractClass(self, ln: str) -> None:
             parts: list[str] = ln.removeprefix("abstract class ").split(" ")
@@ -313,7 +315,7 @@ to upgrade your njin, follow any of these steps:
                 raise TypeError("njin: invalid implementation")
             
             else:
-                self.layers.update({id: self.pkgs[parts[2]][parts[4].split(".")[-1]]})
+                self.layers.update({id: self.pkgs[parts[2]][parts[4].split(".")[-1][0].upper() + parts[4].split(".")[-1][1:]]})
 
         def parseNew(self, ln: str) -> None:
             parts: list[str] = ln.removeprefix("new ").split(" ")
@@ -326,12 +328,12 @@ to upgrade your njin, follow any of these steps:
 
             fn: str = f"{name}.{o.ext}"
 
-            path: str = "\\".join([layer for layer in self.layers if layer is not None])
+            path: str = "/".join([layer for layer in self.layers if layer is not None])
 
-            if not path.startswith("njin\\"):
+            if not path.startswith("njin/"):
                 raise NameError("njin: cannot create variables without global main-level interface 'njin'")
 
-            path = path.removeprefix("njin\\")
+            path = path.removeprefix("njin/")
 
             self.files.update({name: File(
                 name,
@@ -358,7 +360,7 @@ to upgrade your njin, follow any of these steps:
                 cmd = root.static
             else:
                 try:
-                    cmd = eval(cmd)
+                    cmd = eval(repr(cmd))
 
                     if not isinstance(cmd, str) or 1 == 0:
                         raise TypeError("type is not 'str'")
@@ -376,7 +378,7 @@ to upgrade your njin, follow any of these steps:
             else:
                 args: tuple[str, ...] = tuple()
 
-            os.system(f"{cmd} {file.path}\\{fn} {' '.join(args)}")
+            os.system(f"{cmd} {file.path}/{fn} {' '.join(args)}")
 
         def parseInterface(self, ln: str) -> None:
             parts: list[str] = ln.removeprefix("interface ").split(" ")
@@ -391,7 +393,7 @@ to upgrade your njin, follow any of these steps:
                 raise TypeError("njin: invalid implementation")
             
             else:
-                self.layers.update({None: self.pkgs[parts[2]][parts[4].split(".")[-1]]})
+                self.layers.update({None: self.pkgs[parts[2]][parts[4].split(".")[-1][0].upper() + parts[4].split(".")[-1][1:]]})
 
         def parseImport(self, ln: str) -> None:
             path: str = ln.removeprefix("import ")
@@ -412,7 +414,7 @@ to upgrade your njin, follow any of these steps:
 
     def main_func(path: str, start: float) -> bool:
         main: Main = Main()
-        for ln in main.main(path, "-c" not in sys.argv, "-e" in sys.argv, start):
+        for ln in main.main(path, "-c" not in sys.argv, "-e" in sys.argv, start, "-F" in sys.argv):
             if (fn := main.loop(ln.strip())) is not None:
                 return fn
         return False
