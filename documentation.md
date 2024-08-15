@@ -280,6 +280,29 @@ Once that file ends (runs into a return statement), depending on that return val
 - `true`: continue past the assert line
 - `false`: end the file and return false
 
+#### Changing the `void` environment variable
+
+If you need to access a directory somewhere else on your system, and it would be impossible
+or very tedious to get there using classes, you can change the `void` environment variable!
+
+Changing it replaces the current path and removes all layers.
+
+While you can't directly change it since `void` is a constant, you can create a `static copy`.
+When you create a `static copy` of a constant, the original variable gets removed from all
+running instances on that system, and the copy is inserted in it's former place. We can
+create a `static copy` using the `[static]` descriptor
+ex:
+```njin
+// this is file '.n' located in 'C:/Path/Towards/My/Project'
+
+void[static] = "C:/Path/Towards/My/New"
+
+class Project {
+    // here is C:/Path/Towards/My/New/Project
+    // you can build from here
+}
+```
+
 ### Extra Notes:
 
 - Indentation is completely optional.

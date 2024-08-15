@@ -1,3 +1,5 @@
+from typing import Final
+
 """
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -37,15 +39,18 @@ njin 2024 developed by enjiprobably from JΛVOLINN STUDIOS
 [-] github.com/enjiprobably/njin
 """
 
+# Select your preferred python command line prefix (eg. py, python3, python3.12):
+PY: Final[str] = "python"
+
 try:
     import os
     import sys
-    from typing import Any, Final
+    from typing import Any
     from base64 import b64decode
     from importlib import import_module
     from time import perf_counter
 
-    SYSVER: Final[str] = "njin4"
+    SYSVER: Final[str] = "njin5"
 
     class NjinError(Exception):
         ...
@@ -69,7 +74,7 @@ try:
 
     class Commands:
         @staticmethod
-        def help(_) -> None:
+        def _help(_) -> None:
             print("""
 get help for njin:
 
@@ -87,23 +92,23 @@ get help for njin:
 """)
 
         @staticmethod
-        def cl(_) -> None:
+        def _cl(_) -> None:
             while True:
-                cmd: str = input("py njin.py >> ")
+                cmd: str = input(f"{PY} njin.py >> ")
                 if cmd == "exit":
                     exit()
-                os.system(f"py njin.py {cmd if cmd != "" else "-f"} -l")
+                os.system(f"{PY} njin.py {cmd if cmd != '' else '-f'} -l")
                 
         @staticmethod
-        def version(_) -> None:
+        def _version(_) -> None:
             print("your system is running " + SYSVER)
 
         @staticmethod
-        def ping(start: float) -> None:
+        def _ping(start: float) -> None:
             print(f"Pong! {((perf_counter() - start) * 1000):.6f}ms ({(perf_counter() - start):.6f}s)")
 
         @staticmethod
-        def upgrade(_) -> None:
+        def _upgrade(_) -> None:
             print(
 """
 your system is currently running {}
@@ -121,8 +126,8 @@ to upgrade your njin, follow any of these steps:
   the JΛVOLINN*njin Discord server.
 
 
-(i) need help? run `py njin.py -help` to see how you can get support.
-""".format(SYSVER))
+(i) need help? run `{} njin.py -help` to see how you can get support.
+""".format(SYSVER, PY))
                 
     def fetch(path: str) -> str:
         with open(path, encoding="utf8") as file:
@@ -144,11 +149,11 @@ to upgrade your njin, follow any of these steps:
                 start: float = 0.0,
                 create: bool = False
             ) -> list[str]:
-            if path == "-f":
+            if path in ("-f", "File"):
                 path = ".n"
 
-            elif path.startswith("-"):
-                eval(f"Commands.{path[1:]}(start)", {"Commands": Commands, "start": start})
+            elif path.startswith("-") or path[0].isupper():
+                eval(f"Commands.{path.removeprefix("-").replace('-', '_').lower()}(start)", {"Commands": Commands, "start": start})
 
                 return []
 
@@ -165,6 +170,8 @@ to upgrade your njin, follow any of these steps:
             troubleshooting = tbs
 
             try:
+                if not path.endswith(".n"):
+                    raise NameError("njin: not a .n file")
                 c: str = fetch(path).replace("\\\n", "")
             except FileNotFoundError as exc:
                 if not create:
@@ -229,10 +236,21 @@ to upgrade your njin, follow any of these steps:
             elif ln.startswith("super "):
                 self.parseSuper(ln)
 
+            elif (
+                ln.startswith("void[static] =") or
+                ln.startswith("void[static] = ") or
+                ln.startswith("void[static]= ") or
+                ln.startswith("void[static]=")
+            ):
+                self.parseVoid(ln)
+
+            elif ln.startswith("Export "):
+                self.parseExport(ln)
+
             elif ln.startswith("[\"") and ln.endswith("\"]"):
-                os.system(ln.strip("[\"]"))
+                os.system(ln.strip("[\"]").format("/".join(self.layers)))
                 
-            elif ln in ("}", "break"):
+            elif ln in ("}", "break") or ln.startswith("</") and ln.endswith(">"):
                 self.layers.popitem()
         
         def parseAssert(self, ln: str) -> bool | None:
@@ -412,17 +430,60 @@ to upgrade your njin, follow any of these steps:
             self.parseNew(f"new {parts[0]}")
             self.parseTry(f"try {' '.join(parts)}")
 
+        def parseVoid(self, ln: str) -> None:
+            parts: list[str] = ln.removeprefix(
+                "void[static] =".removeprefix(
+                "void[static] = ").removeprefix(
+                "void[static]= ").removeprefix(
+                "void[static]=")
+            ).split(" ")
+
+            self.layers.clear()
+            self.layers.update({eval(" ".join(parts[1:])): None})
+
+        def parseExport(self, ln: str) -> None:
+            parts: list[str] = ln.removeprefix("Export ").split(" ")
+
+            if parts[0].startswith("<") and parts[0].endswith(">"):
+                name: str = parts[0].strip("<>")
+            else:
+                raise TypeError("njin: no arrow structure")
+
+            os.system(f"{name} {' '.join(parts[1:])}")
+            
     def main_func(path: str, start: float) -> bool:
         main: Main = Main()
-        for ln in main.main(path, "-c" not in sys.argv, "-e" in sys.argv, start, "-F" in sys.argv):
-            if (fn := main.loop(ln.strip())) is not None:
+        for ln in main.main(path, "-mute" not in sys.argv or "Mute" not in sys.argv, "-err" in sys.argv or "Error" not in sys.argv, start, "-w" in sys.argv or "Write" in sys.argv):
+            if (fn := main.loop(ln.strip().strip("<>"))) is not None:
                 return fn
         return False
 
     if __name__ == "__main__":
+        if "-hmute" in sys.argv or "-playback" in sys.argv or "HardMute" in sys.argv or "Playback" in sys.argv:
+            try:
+                with open("_throwaway", "w") as _:
+                    ...
+                args: list[str] = sys.argv
+                try:
+                    args.remove("-hmute")
+                except ValueError:
+                    try:
+                        args.remove("HardMute")
+                    except ValueError:
+                        try:
+                            args.remove("-playback")
+                        except ValueError:
+                            args.remove("Playback")
+                os.system(f"{PY} {' '.join(args)} > _throwaway")
+                if "-playback" in sys.argv or "Playback" in sys.argv:
+                    print(fetch("_throwaway"))
+                exit()
+            finally:
+                print("hi")
+                os.remove("_throwaway")
         start: float = perf_counter()
         r: bool = main_func((sys.argv[1] if len(sys.argv) >= 2 else ".n"), start)
-        if "-l" in sys.argv:
+        if "-l" in sys.argv or "Log" in sys.argv:
             print(f"{sys.argv[1]}.n >> {str(r).lower()}")
 
 except Exception as exc:
