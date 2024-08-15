@@ -361,7 +361,7 @@ get help for njin:
     if __name__ == "__main__":
         r: bool = main_func((sys.argv[1] if len(sys.argv) >= 2 else ".n"))
         if "-l" in sys.argv:
-            print(f"{sys.argv[1] if len(sys.argv) >= 2 else '.n'}.n >> {r.lower()}")
+            print(f"{sys.argv[1] if len(sys.argv) >= 2 else '.n'}.n >> {str(r).lower()}")
 
 except Exception as exc:
     if not troubleshooting:
