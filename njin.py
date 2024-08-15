@@ -1,17 +1,26 @@
 """
-███╗░░██╗░░░░░██╗██╗███╗░░██╗
-████╗░██║░░░░░██║██║████╗░██║
-██╔██╗██║░░░░░██║██║██╔██╗██║
-██║╚████║██╗░░██║██║██║╚████║
-██║░╚███║╚█████╔╝██║██║░╚███║
-╚═╝░░╚══╝░╚════╝░╚═╝╚═╝░░╚══╝
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  @@@@@@@@@@@@@@@@@@          @@@@@@@             
+     @@@@@@@@@@@@@@@           @@                 
+       @@@@@@@@@@@@@                              
+        @@@@@@@@@@@@                              
+        @@@@@@@@@@@@              @@@@@@@@@       
+        @@@@@@@@@@@@            @@@@@@@@@@@@      
+        @@@@@@@@@@@@            @@@@@@@@@@@@      
+        @@@@@@@@@@@@            @@@@@@@@@@@@      
+        @@@@@@@@@@@@            @@@@@@@@@@@@      
+        @@@@@@@@@@@@            @@@@@@@@@@@@      
+        @@@@@@@@@@@@            @@@@@@@@@@@@      
+        @@@@@@@@@@@@            @@@@@@@@@@@@       
 
-
--- welcome to your njin
-
-~ run 'py njin.py -v' to check the version
-
-~ check https://javolinn.wixsite.com/garnet for updates
+-- welcome to your njin cli!
 
 https://github.com/enjiprobably/njin/main/documentation.py for documentation
 
@@ -20,6 +29,9 @@ commands (cmd and powershell compatible):
 ~ py njin.py file.n ~ run ./file.n
 ~ py njin.py -help ~ get help for njin
 ~ py njin.py -cl ~ launch the njin command line interface
+~ py njin.py -version ~ get the current version of njin on your system
+~ py njin.py -ping ~ see how fast njin is running
+~ py njin.py -upgrade ~ upgrade njin on your system
 
 njin 2024 developed by enjiprobably from JΛVOLINN STUDIOS
 [-] github.com/enjiprobably/njin
@@ -31,8 +43,9 @@ try:
     from typing import Any, Final
     from base64 import b64decode
     from importlib import import_module
+    from time import perf_counter
 
-    SYSVER: Final[str] = "njin3.3"
+    SYSVER: Final[str] = "njin4"
 
     class NjinError(Exception):
         ...
@@ -56,7 +69,7 @@ try:
 
     class Commands:
         @staticmethod
-        def help() -> None:
+        def help(_) -> None:
             print("""
 get help for njin:
 
@@ -74,14 +87,40 @@ get help for njin:
 """)
 
         @staticmethod
-        def cl() -> None:
+        def cl(_) -> None:
             while True:
                 cmd: str = input("py njin.py >> ")
                 os.system(f"py njin.py {cmd if cmd != "" else "-f"} -l")
                 
         @staticmethod
-        def v() -> None:
+        def version(_) -> None:
             print("your system is running " + SYSVER)
+
+        @staticmethod
+        def ping(start: float) -> None:
+            print(f"Pong! {(perf_counter() - start):.6f}")
+
+        @staticmethod
+        def upgrade(_) -> None:
+            print(
+"""
+your system is currently running {}
+                  
+to upgrade your njin, follow any of these steps:
+~ use `gh repo sync` if you loaded this from GitHub
+
+~ re-download a zip from our GitHub repository at
+  [-] https://github.com/enjiprobably/njin
+
+~ check for updates at
+  [-] https://javolinn.wixsite.com/garnet/forum/production
+
+~ if you're an njineer, you can request the new release on
+  the JΛVOLINN*njin Discord server.
+
+
+(i) need help? run `py njin.py -help` to see how you can get support.
+""".format(SYSVER))
                 
     def fetch(path: str) -> str:
         with open(path, encoding="utf8") as file:
@@ -95,12 +134,19 @@ get help for njin:
         def __init__(self) -> None:
             ...
 
-        def main(self, path: str, njin_loaded: bool = True, tbs: bool = False) -> list[str]:
+        def main(
+                self,
+                path: str,
+                njin_loaded: bool = True,
+                tbs: bool = False,
+                start: float = 0.0,
+                create: bool = False
+            ) -> list[str]:
             if path == "-f":
                 path = ".n"
 
             elif path.startswith("-"):
-                eval(f"Commands.{path[1:]}()")
+                eval(f"Commands.{path[1:]}(start)", {"Commands": Commands, "start": start})
 
                 return []
 
@@ -116,8 +162,14 @@ get help for njin:
             
             troubleshooting = tbs
 
-            c: str = fetch(path).replace("\\\n", "")
-            name: str = ""
+            try:
+                c: str = fetch(path).replace("\\\n", "")
+            except FileNotFoundError as exc:
+                if not create:
+                    raise exc
+                with open(path, "w") as _: ...
+                c: str = fetch(path).replace("\\\n", "")
+
             lns: list[str] = c.split("\n") + ["return false"]
 
             self.comment: bool = False
@@ -151,6 +203,9 @@ get help for njin:
             elif ln.startswith("private "):
                 self.parsePrivate(ln)
 
+            elif ln.startswith("protected "):
+                self.parseProtected(ln)
+
             elif ln.startswith("class "):
                 self.parseClass(ln)
 
@@ -183,7 +238,7 @@ get help for njin:
 
             id: str = parts[0]
 
-            if not main_func(id):
+            if not main_func(id, perf_counter()):
                 return False
 
         def parsePackage(self, ln: str) -> None:
@@ -220,6 +275,9 @@ get help for njin:
             self.parseModule(ln, "{name}", "public ")
             
         def parsePrivate(self, ln: str) -> None:
+            self.parseModule(ln, "{module}", "protected ")
+
+        def parseProtected(self, ln: str) -> None:
             self.parseModule(ln, "{module}.{name}", "private ")
             
         def parseClass(self, ln: str) -> None:
@@ -352,16 +410,18 @@ get help for njin:
             self.parseNew(f"new {parts[0]}")
             self.parseTry(f"try {' '.join(parts)}")
 
-    def main_func(path: str) -> bool | None:
+    def main_func(path: str, start: float) -> bool:
         main: Main = Main()
-        for ln in main.main(path, "-c" in sys.argv, "-e" in sys.argv):
+        for ln in main.main(path, "-c" not in sys.argv, "-e" in sys.argv, start):
             if (fn := main.loop(ln.strip())) is not None:
                 return fn
+        return False
 
     if __name__ == "__main__":
-        r: bool = main_func((sys.argv[1] if len(sys.argv) >= 2 else ".n"))
+        start: float = perf_counter()
+        r: bool = main_func((sys.argv[1] if len(sys.argv) >= 2 else ".n"), start)
         if "-l" in sys.argv:
-            print(f"{sys.argv[1] if len(sys.argv) >= 2 else '.n'}.n >> {str(r).lower()}")
+            print(f"{sys.argv[1]}.n >> {str(r).lower()}")
 
 except Exception as exc:
     if not troubleshooting:
